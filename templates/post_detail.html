@@ -4,17 +4,5 @@
 {% endblock %}
 
 {% block content %}
-    {{ post.author }}
-    <br>
     {{ post.name }}
-    <br>
-    <br>
-    {{ post.text }}
-
-    <br>
-    ПРОДУКТ
-    {% for prod in product_list %}
-        <p>{{ prod.name }}</p>
-    {% endfor %}
-
 {% endblock %}
