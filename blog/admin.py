@@ -6,7 +6,6 @@ from user.models import Profile
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug')
-    # list_editable = ('name', )
     prepopulated_fields = {'slug': ('name', )}
 
 
