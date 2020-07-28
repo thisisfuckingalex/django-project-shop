@@ -10,8 +10,11 @@
     <br>
     <br>
     {{ post.text }}
+
+    <br>
+    ПРОДУКТ
     {% for prod in product_list %}
-        {{ prod.name }}
+        <p>{{ prod.name }}</p>
     {% endfor %}
 
 {% endblock %}
