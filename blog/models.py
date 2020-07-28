@@ -33,7 +33,7 @@ class Category(MPTTModel):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('category_slug', args=[str(self.slug)])
+        return reverse('category_detail', kwargs={'category_slug': self.slug})
 
 
 class Post(models.Model):
@@ -66,7 +66,7 @@ class Post(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('post_slug', args=[str(self.slug)])
+        return reverse('post_detail', kwargs={'pk': self.pk})
 
 
 class Product(models.Model):
@@ -100,6 +100,6 @@ class Product(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('product_slug', args=[str(self.slug)])
+        return reverse('product_detail', kwargs={'product_slug': self.slug})
 
 
