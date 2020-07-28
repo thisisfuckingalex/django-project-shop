@@ -21,18 +21,18 @@ class PostDetail(DetailView):
     slug_field = 'post_id'
 
 
-class CategoryList(ListView):
-    model = Category
-    template_name = 'base.html'
-
-
-class CategoryDetail(DetailView):
-    model = Post
-    template_name = 'category_detail.html'
-    slug_field = 'category_slug'
-
-    def get_queryset(self):
-        Post.objects.filter(category__slug=self.kwargs['category_slug'])
+# class CategoryList(ListView):
+#     model = Category
+#     template_name = 'base.html'
+#
+#
+# class CategoryDetail(DetailView):
+#     model = Post
+#     template_name = 'category_detail.html'
+#     slug_field = 'category_slug'
+#
+#     def get_queryset(self):
+#         Post.objects.filter(category__slug=self.kwargs['category_slug'])
 
 
 
