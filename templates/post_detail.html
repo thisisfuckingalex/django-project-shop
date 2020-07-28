@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+    {{ post.author }}
+    <br>
+    {{ post.name }}
+    <br>
+    <br>
+    {{ post.text }}
+    {% for prod in product_list %}
+        {{ prod.name }}
+    {% endfor %}
+
+{% endblock %}
