@@ -36,39 +36,6 @@ class Category(MPTTModel):
         return reverse('category_detail', kwargs={'category_slug': self.slug})
 
 
-class Post(models.Model):
-    author = models.ForeignKey(
-        Profile,
-        on_delete=models.SET_NULL,
-        null=True
-    )
-    name = models.CharField('Название', max_length=50)
-    slug = models.SlugField('Url', max_length=55, unique=True)
-    description = models.TextField('Описание', max_length=300)
-    text = models.TextField('Текст')
-    category = models.ForeignKey(
-        Category,
-        related_name='Category',
-        on_delete=models.CASCADE,
-    )
-    tag = TaggableManager(blank=True)
-    created_date = models.DateTimeField('Дата создания', auto_now_add=True)
-    update_date = models.DateTimeField('Последние обновление', auto_now=True)
-    to_display = models.BooleanField('Показать?', default=False)
-    for_auth = models.BooleanField('Для авторизованных пользователей?', default=False)
-
-    class Meta:
-        ordering = ['created_date']
-        verbose_name = 'Пост'
-        verbose_name_plural = 'Посты'
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return reverse('post_detail', kwargs={'pk': self.pk})
-
-
 class Product(models.Model):
     author = models.ForeignKey(
         Profile,
@@ -78,17 +45,12 @@ class Product(models.Model):
     name = models.CharField('Название', max_length=50)
     slug = models.SlugField('Url', max_length=55, unique=True)
     description = models.TextField('Описание', max_length=300)
-    post = models.ForeignKey(
-        Post,
-        related_name='Post',
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True
-    )
+    image = models.ImageField('Изображение', upload_to='products', blank=True, null=True)
     tag = TaggableManager(blank=True)
     created_date = models.DateTimeField('Дата создания', auto_now_add=True)
     update_date = models.DateTimeField('Последние обновление', auto_now=True)
     to_display = models.BooleanField('Показать?', default=False)
+    price = models.PositiveIntegerField('Цена', default=0)
     for_auth = models.BooleanField('Для авторизованных пользователей?', default=False)
 
     class Meta:
@@ -100,6 +62,46 @@ class Product(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('product_detail', kwargs={'product_slug': self.slug})
+        return reverse('product_detail', kwargs={'pk_product': self.id})
 
 
+class Post(models.Model):
+    author = models.ForeignKey(
+        Profile,
+        on_delete=models.SET_NULL,
+        null=True
+    )
+    name = models.CharField('Название', max_length=50)
+    slug = models.SlugField('Url', max_length=55, unique=True)
+    description = models.TextField('Описание', max_length=300)
+    text = models.TextField('Текст')
+    image = models.ImageField('Изображение', upload_to='posts', blank=True)
+    category = models.ForeignKey(
+        Category,
+        related_name='Category',
+        on_delete=models.CASCADE,
+    )
+    product = models.ForeignKey(
+        Product,
+        related_name='Product',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+    tag = TaggableManager(blank=True)
+    created_date = models.DateTimeField('Дата создания', auto_now_add=True)
+    update_date = models.DateTimeField('Последние обновление', auto_now=True)
+    to_display = models.BooleanField('Показать?', default=False)
+    for_auth = models.BooleanField('Для авторизованных пользователей?', default=False)
+
+
+    class Meta:
+        ordering = ['created_date']
+        verbose_name = 'Пост'
+        verbose_name_plural = 'Посты'
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('post_detail', kwargs={'pk_post': self.id})
