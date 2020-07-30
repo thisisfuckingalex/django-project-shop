@@ -4,5 +4,10 @@
 {% endblock %}
 
 {% block content %}
-
+    <p>{{ post.name }}</p>
+    <p>{{ post.text }}</p>
+    <p>
+        {{ post.product }} {{ post.product.description }}
+    </p>
+    <p>{{ post.category }}</p>
 {% endblock %}
