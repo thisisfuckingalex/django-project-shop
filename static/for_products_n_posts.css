@@ -1,0 +1,20 @@
+/*.wrap {*/
+/*         width: 1310px;!*фиксируем ширину обертки*!*/
+/*         margin: 0 auto;!*центрируем ее*!*/
+/*         background: darkgray;*/
+/*         height: 120px;!*Задаем высоту обертки*!*/
+/*        }*/
+
+.bblockk {
+        float: left; /*Задаем обтекание*/
+        line-height: 120px;/*Высота строки +  верт. центрирования текста*/
+        font-size: 40px;
+        background: dodgerblue;
+        color: white;
+        width: 320px; /*Фиксируем ширину блока*/
+        margin-right: 10px;
+        text-align: center; /*Центрируем текст по горизонтали*/
+}
+/*.wrap :last-child {*/
+/*        margin-right: 0px;!*Убираем поле последнего div-а*!*/
+/*                       }*/

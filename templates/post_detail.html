@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 
 {% block title %}
+    {{ post.name }}
 {% endblock %}
 
 {% block content %}
     <p>{{ post.name }}</p>
     <p>{{ post.text }}</p>
     <p>
-        {{ post.product }} {{ post.product.description }}
+        <a href="{{ post.product.get_absolute_url }}">{{ post.product }}</a> {{ post.product.description }}
     </p>
     <p>{{ post.category }}</p>
 {% endblock %}

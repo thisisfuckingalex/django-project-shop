@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Продукт {{ product.name }}
+    {{ product.name }}
 {% endblock %}
 
 {% block content %}
-
+    <div class="card" style="width: 18rem;">
+        <img src="{{ product.image.url }}" class="card-img-top" alt="">
+    </div>
     <h2>{{ product.name }}</h2>
     <p>{{ product.description }}</p>
     <h4>{{ product.price }} рублей</h4>

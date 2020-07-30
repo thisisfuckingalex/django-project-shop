@@ -44,7 +44,7 @@ class Product(models.Model):
     )
     name = models.CharField('Название', max_length=50)
     slug = models.SlugField('Url', max_length=55, unique=True)
-    description = models.TextField('Описание', max_length=300)
+    description = models.TextField('Описание', max_length=200)
     image = models.ImageField('Изображение', upload_to='products', blank=True, null=True)
     tag = TaggableManager(blank=True)
     created_date = models.DateTimeField('Дата создания', auto_now_add=True)
@@ -73,7 +73,7 @@ class Post(models.Model):
     )
     name = models.CharField('Название', max_length=50)
     slug = models.SlugField('Url', max_length=55, unique=True)
-    description = models.TextField('Описание', max_length=300)
+    description = models.TextField('Описание', max_length=200)
     text = models.TextField('Текст')
     image = models.ImageField('Изображение', upload_to='posts', blank=True)
     category = models.ForeignKey(
