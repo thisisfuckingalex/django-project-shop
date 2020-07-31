@@ -30,9 +30,13 @@
       <!-- Blog Entries Column -->
       <div class="col-md-8">
 
-        <h1 class="my-4">Page Heading
-          <small>Secondary Text</small>
+        <h1 class="my-4">Категория
+            {% for posts in postbycategory %}
+          <small>{{ posts.category.name }}</small>
+            {% endfor %}
         </h1>
+
+
 
         <!-- Blog Post -->
           {% for posts in postbycategory %}
