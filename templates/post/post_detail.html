@@ -43,7 +43,8 @@
         <hr>
 
         <!-- Preview Image -->
-        <img class="img-fluid rounded" src="{{ post.image.url }}" alt="" >
+        <img class="img-fluid rounded" src="{% if post.image %}{{ post.image.url }}{% else %}
+            http://placehold.it/750x300{% endif %}" alt="" >
 
         <hr>
 
@@ -52,7 +53,8 @@
           <p>{{ post.text }}</p>
           <br>
           <p class="lead">
-              <p><img src="{{ post.product.image.url }}" width="200" height="222" alt="Винни-Пух"></p>
+              <p><img src="{% if post.product.image %}{{ post.product.image.url }}{% else %}
+            http://placehold.it/750x300{% endif %}" width="200" height="222" alt="Винни-Пух"></p>
               <h3><a href="{{ post.product.get_absolute_url }}">{{ post.product.name }}</a></h3>
 
           <hr>
@@ -87,7 +89,7 @@
         <div class="card my-4">
           <h5 class="card-header">Категория поста</h5>
           <div class="card-body">
-              {{ post.category }}
+              <a href="{{ post.category.get_absolute_url }}">{{ post.category }}</a>
           </div>
         </div>
           <div class="card my-4">

@@ -35,16 +35,13 @@
         </h1>
 
         <!-- Blog Post -->
-          {% for posts in home_posts %}
+          {% for posts in postbycategory %}
 {#              src="http://placehold.it/750x300"#}
         <div class="card mb-4">
-{#            <img class="crop" src="{{ posts.image.url }}" alt="css template">#}
+            <img class="crop" src="{% if posts.image %}{{ posts.image.url }}{% else %}
+            http://placehold.it/750x300{% endif %}" alt="css template">
 
-{#                <img class="card-img-top"  src="http://placehold.it/750x300"#}
-{#                     alt="Card image cap" width="750px" height="300px">#}
-            <img class="card-img-top"  src="{% if posts.image %}{{ posts.image.url }}{% else %}
-            http://placehold.it/750x300{% endif %}" alt="Card image cap" width="750px" height="300px">
-
+{#          <img class="card-img-top"  src="{{ posts.image.url }}" alt="Card image cap" width="750px" height="300px">#}
           <div class="card-body">
             <h2 class="card-title">{{ posts.name }}</h2>
             <p class="card-text">{{ posts.description }}</p>
@@ -173,7 +170,7 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="../static/home/posts/vendor/jquery/jquery.min.js"></script>
-  <script src="../static/home/posts/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/home/posts/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/home/posts/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 {% endblock %}

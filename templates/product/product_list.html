@@ -77,7 +77,8 @@
          {% for products in product_list %}
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="{{ products.image.url }}" alt="" ></a>
+              <a href="#"><img class="card-img-top" src="{% if products.image %}{{ products.image.url }}{% else %}
+            http://placehold.it/750x300{% endif %}" alt="" ></a>
               <div class="card-body">
                 <h4 class="card-title">
                   <a href="{{ products.get_absolute_url }}">{{ products.name }}</a>
