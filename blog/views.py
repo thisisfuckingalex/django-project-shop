@@ -7,7 +7,7 @@ from user.models import Profile
 
 class HomePost(ListView):
     model = Post
-    template_name = 'home.html'
+    template_name = 'index.html'
     context_object_name = 'home_posts'
     queryset = Post.objects.filter(to_display=True)
 

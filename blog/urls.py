@@ -6,11 +6,12 @@ from . import views
 
 urlpatterns = [
     path('', views.HomePost.as_view(), name='home_posts'),
-    path('post/<int:pk_post>/', views.PostDetail.as_view(), name='post_detail'),
+    path('posts/<int:pk_post>/', views.PostDetail.as_view(), name='post_detail'),
     path('product/<int:pk_product>/', views.ProductDetail.as_view(), name='product_detail'),
     path('products/', views.ProductList.as_view(), name='product_list'),
 
 ]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

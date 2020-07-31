@@ -1,21 +1,30 @@
 {% extends 'base.html' %}
 
+{% block style %}
+
+{% endblock %}
+
 {% block title %}
     Продукты
 
 {% endblock %}
 
 {% block content %}
-    {% for products in product_list %}
 
-        <div class="card" style="width: 18rem;">
-            <a href="{{ products.get_absolute_url }}"><img src="{{ products.image.url }}" class="card-img-top" alt=""></a>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="{{ products.get_absolute_url }}">{{ products.name }}</a></h5>
-                    <p class="card-text">{{ products.description }}</p>
-                    <a href="{{ products.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+         <div class="container">
+            <div class="row">
+                {% for products in product_list %}
+                <div class="card" style="width: 18rem;">
+                    <a href="{{ products.get_absolute_url }}"><img src="{{ products.image.url }}" class="card-img-top" alt=""></a>
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{{ products.get_absolute_url }}">{{ products.name }}</a></h5>
+                            <p class="card-text">{{ products.pre_description }}</p>
+                            <a href="{{ products.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+                        </div>
                 </div>
-        </div>
+                    {% endfor %}
+            </div>
+         </div>
 
-    {% endfor %}
+
 {% endblock %}
