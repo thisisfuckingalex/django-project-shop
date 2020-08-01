@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 from blog.models import Product
 
 from user.models import Profile
@@ -24,6 +26,9 @@ class Order(models.Model):
 
     def get_total_cost(self):
         return sum(item.get_cost() for item in self.items.all())
+
+    def get_absolute_url(self):
+        return reverse('order_detail', kwargs={'pk_order': self.pk})
 
 
 class OrderItem(models.Model):
