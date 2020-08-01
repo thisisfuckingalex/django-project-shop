@@ -1,2 +1,4 @@
 venv
 blogosh_blogwithshop
+.idea
+__pycache__
