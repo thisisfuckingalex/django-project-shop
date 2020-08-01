@@ -3,10 +3,28 @@ from django.views import generic
 
 from order.forms import OrderCreateForm
 from order.models import Order, OrderItem
+from cart.cart import Cart
 
 
-class OrderCreate(generic.CreateView):
-    form_class = OrderCreateForm
+def order_create(request):
+    cart = Cart(request)
+    if request.method == 'POST':
+        form = OrderCreateForm(request.POST)
+        if form.is_valid():
+            order = form.save()
+            for item in cart:
+                OrderItem.objects.create(order=order,
+                                         product=item['product'],
+                                         price=item['price'],
+                                         quantity=item['quantity'])
+            # очистка корзины
+            cart.clear()
+            return render(request, 'order/order_created.html',
+                          {'order': order})
+    else:
+        form = OrderCreateForm
+    return render(request, 'order/order_create.html',
+                  {'cart': cart, 'form': form})
 
 
 class OrderList(generic.ListView):
