@@ -95,7 +95,6 @@ class Post(models.Model):
     to_display = models.BooleanField('Показать?', default=False)
     for_auth = models.BooleanField('Для авторизованных пользователей?', default=False)
 
-
     class Meta:
         ordering = ['created_date']
         verbose_name = 'Пост'

@@ -5,7 +5,6 @@ from django.views.generic import ListView, DetailView, View
 from blog.models import Category, Post, Product
 from user.models import Profile
 from taggit.models import Tag
-from blog.utils import *
 from cart.forms import AddProduct
 
 
