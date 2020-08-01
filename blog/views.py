@@ -1,10 +1,12 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, View
 
 from blog.models import Category, Post, Product
 from user.models import Profile
 from taggit.models import Tag
+from blog.utils import *
+from cart.forms import AddProduct
 
 
 class HomePost(ListView):
@@ -35,11 +37,11 @@ class ProductList(ListView):
     queryset = Product.objects.filter(to_display=True)
 
 
-class ProductDetail(DetailView):
-    """Отображение одного продукты"""
-    model = Product
-    template_name = 'product/product_detail.html'
-    pk_url_kwarg = 'pk_product'
+def product_detail(request, pk_product):
+    product = Product.objects.get(pk=pk_product)
+    cart_product_form = AddProduct()
+    return render(request, 'product/product_detail.html', {'product': product,
+                                                           'cart_product_form': cart_product_form})
 
 
 class CategoryList(ListView):

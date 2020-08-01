@@ -40,6 +40,11 @@
           <div class="card-body">
             <h3 class="card-title">{{ product.name }}</h3>
             <h4>{{ product.price }} руб.</h4>
+              <form action="{% url "cart_add" product.id %}" method="post">
+                  {{ cart_product_form }}
+                  {% csrf_token %}
+                  <input type="submit" value="Add to cart">
+              </form>
             <p class="card-text">{{ product.pre_description }}</p>
           </div>
         </div>
@@ -63,6 +68,7 @@
 
   </div>
   <!-- /.container -->
+
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
