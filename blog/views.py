@@ -23,7 +23,7 @@ class HomePost(ListView):
     paginate_by = 2
 
 
-class PostDetail(VisitsPostMixin, View):
+class PostDetail(View, PostDetailMixin, ):
     """Отображение одного поста"""
     model = Post
     template_name = 'post/post_detail.html'
@@ -38,15 +38,10 @@ class ProductList(ListView):
     queryset = Product.objects.filter(to_display=True)
 
 
-def product_detail(request, pk_product):
-    product = Product.objects.get(pk=pk_product)
-    cart_product_form = AddProduct()
-    num_visits_product = request.session.get('num_visits_product', 0)
-    request.session['num_visits_product'] = num_visits_product + 1
-    return render(request, 'product/product_detail.html', {'product': product,
-                                                           'cart_product_form': cart_product_form,
-                                                           'num_visits_product': num_visits_product,
-                                                           })
+class ProductDetail(View, ProductDetailMixin):
+    model = Product
+    template_name = 'product/product_detail.html'
+    forms = AddProduct()
 
 
 class CategoryList(ListView):
