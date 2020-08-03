@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -7,7 +7,7 @@ from . import views
 
 urlpatterns = [
     path('', views.HomePost.as_view(), name='home_posts'),
-    path('posts/<int:pk_post>/', views.PostDetail.as_view(), name='post_detail'),
+    path('posts/<pk_post>/', views.PostDetail.as_view(), name='post_detail'),
     path('product/<int:pk_product>/', views.product_detail, name='product_detail'),
     path('products/', views.ProductList.as_view(), name='product_list'),
     path('categories/', views.CategoryList.as_view(), name='category_list'),

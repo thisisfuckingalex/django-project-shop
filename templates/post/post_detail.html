@@ -11,13 +11,15 @@
     <link href="/static/detail/post/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="/static/detail/post/css/blog-post.css" rel="stylesheet">
+
 {% endblock %}
 
 {% block title %}
     {{ post.name }}
 {% endblock %}
-
 {% block content %}
+    {% for post in post %}
+
     <!-- Page Content -->
   <div class="container">
 
@@ -51,11 +53,14 @@
         <!-- Post Content -->
           <p class="lead">{{ post.description }}</p>
           <p>{{ post.text }}</p>
+          <p>Просмотры {{ num_visits_post }}</p>
           <br>
           <p class="lead">
               <p><img src="{% if post.product.image %}{{ post.product.image.url }}{% else %}
             http://placehold.it/750x300{% endif %}" width="200" height="222" alt="Винни-Пух"></p>
               <h3><a href="{{ post.product.get_absolute_url }}">{{ post.product.name }}</a></h3>
+
+
 
           <hr>
 
@@ -118,4 +123,5 @@
   <!-- Bootstrap core JavaScript -->
   <script src="/static/detail/post/vendor/jquery/jquery.min.js"></script>
   <script src="/static/detail/post/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    {% endfor %}
 {% endblock %}

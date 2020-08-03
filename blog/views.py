@@ -6,6 +6,7 @@ from blog.models import Category, Post, Product
 from user.models import Profile
 from taggit.models import Tag
 from cart.forms import AddProduct
+from blog.utils import *
 
 
 class HomePost(ListView):
@@ -22,11 +23,12 @@ class HomePost(ListView):
     paginate_by = 2
 
 
-class PostDetail(DetailView):
+class PostDetail(VisitsPostMixin, View):
     """Отображение одного поста"""
     model = Post
     template_name = 'post/post_detail.html'
-    pk_url_kwarg = 'pk_post'
+
+    # pk_url_kwarg = 'pk_post'
 
 
 class ProductList(ListView):
@@ -39,8 +41,12 @@ class ProductList(ListView):
 def product_detail(request, pk_product):
     product = Product.objects.get(pk=pk_product)
     cart_product_form = AddProduct()
+    num_visits_product = request.session.get('num_visits_product', 0)
+    request.session['num_visits_product'] = num_visits_product + 1
     return render(request, 'product/product_detail.html', {'product': product,
-                                                           'cart_product_form': cart_product_form})
+                                                           'cart_product_form': cart_product_form,
+                                                           'num_visits_product': num_visits_product,
+                                                           })
 
 
 class CategoryList(ListView):
