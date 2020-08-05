@@ -1,9 +1,11 @@
 from django.shortcuts import render
-from django.views import generic
+from django.views.generic import *
+from django.contrib.auth.models import User
 
 from order.forms import OrderCreateForm
 from order.models import Order, OrderItem
 from cart.cart import Cart
+from order.utils import OrderMixin
 
 
 def order_create(request):
@@ -27,14 +29,14 @@ def order_create(request):
                   {'cart': cart, 'form': form})
 
 
-class OrderList(generic.ListView):
+class OrderList(View, OrderMixin):
     model = Order
     template_name = 'order/order_list.html'
 
 
-class OrderDetail(generic.ListView):
+class OrderDetail(ListView):
     model = OrderItem
     template_name = 'order/order_detail.html'
 
     def get_queryset(self):
-        return OrderItem.objects.filter(product__id__in=self.kwargs['pk_order'])
+        return OrderItem.objects.filter(order_id=self.kwargs['pk_order'])

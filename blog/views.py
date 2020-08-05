@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, View
+from django.db.models import Sum
 
 from blog.models import Category, Post, Product
 from user.models import Profile

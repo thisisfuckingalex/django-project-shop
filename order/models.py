@@ -1,13 +1,11 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
 from blog.models import Product
 
-from user.models import Profile
-
-
 class Order(models.Model):
-    username = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    username = models.ForeignKey(User, on_delete=models.CASCADE)
     email = models.EmailField()
     address = models.CharField(max_length=250)
     postal_code = models.CharField(max_length=20)

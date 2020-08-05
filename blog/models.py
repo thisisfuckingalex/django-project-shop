@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from pytils.translit import slugify
 from taggit.managers import TaggableManager
 
-from user.models import Profile
+from author.models import Author
 
 
 class Category(MPTTModel):
@@ -36,17 +36,9 @@ class Category(MPTTModel):
         return reverse('category_detail', kwargs={'category_pk': self.id})
 
 
-class CategoryStatistic(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    views = models.PositiveIntegerField('Просмотры', default=0)
-
-    def __str__(self):
-        return self.category.name
-
-
 class Product(models.Model):
     author = models.ForeignKey(
-        Profile,
+        Author,
         on_delete=models.SET_NULL,
         null=True
     )
@@ -76,7 +68,7 @@ class Product(models.Model):
 
 class Post(models.Model):
     author = models.ForeignKey(
-        Profile,
+        Author,
         on_delete=models.SET_NULL,
         null=True
     )
@@ -113,11 +105,3 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('post_detail', kwargs={'pk_post': self.id})
-
-
-class PostStatistic(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    views = models.PositiveIntegerField('Просмотры', default=0)
-
-    def __str__(self):
-        return self.post.name

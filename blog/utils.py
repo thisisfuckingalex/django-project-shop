@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from cart.forms import AddProduct
+from django.shortcuts import render, get_object_or_404
+from django.utils import timezone
 
 
 class PostDetailMixin:
@@ -8,9 +8,7 @@ class PostDetailMixin:
 
     def get(self, request, pk_post):
         post = self.model.objects.filter(pk=pk_post)
-        num_visits_post = request.session.get('num_visits_post', 0)
-        request.session['num_visits_post'] = num_visits_post + 1
-        return render(request, self.template_name, context={'post': post, 'num_visits_post': num_visits_post})
+        return render(request, self.template_name, context={'post': post})
 
 
 class ProductDetailMixin:
@@ -27,3 +25,5 @@ class ProductDetailMixin:
                                                                'cart_product_form': cart_product_form,
                                                                'num_visits_product': num_visits_product,
                                                                })
+
+

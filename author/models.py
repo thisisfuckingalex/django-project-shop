@@ -5,15 +5,14 @@ from django.contrib.auth.models import User
 from pytils.translit import slugify
 from django.urls import reverse
 
-from order.models import Order
+# from order.models import Order
 
 
-class Profile(models.Model):
+class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     slug = models.SlugField('id', max_length=100000, unique=True)
     bio = models.TextField(max_length=500, blank=True)
-    orders = models.ForeignKey(Order, on_delete=models.CASCADE, blank=True, null=True)
-    created_date = models.DateTimeField('Дата создание аккаунта', auto_now_add=True)
+
 
     class Meta:
         verbose_name = 'Профиль'
@@ -21,7 +20,7 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.user, )
-        super(Profile, self).save(*args, **kwargs)
+        super(Author, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('profile_detail', args=[str(self.slug)])
@@ -32,7 +31,7 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
-            Profile.objects.create(user=instance)
+            Author.objects.create(user=instance)
 
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
