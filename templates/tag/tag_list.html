@@ -1,7 +1,0 @@
-{% extends 'base.html' %}
-
-{% block content %}
-    {% for tags in tag_list %}
-        <a href="{{ tags.pk }}"><p>{{ tags.name }}</p></a>
-    {% endfor %}
-{% endblock %}

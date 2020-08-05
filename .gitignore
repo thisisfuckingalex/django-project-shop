@@ -1,4 +1,7 @@
 venv
 blogosh_blogwithshop
 .idea
-__pycache__
+db.sqlite3
+media
+templates
+static
