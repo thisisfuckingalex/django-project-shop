@@ -40,6 +40,7 @@ class Product(models.Model):
     author = models.ForeignKey(
         Author,
         on_delete=models.SET_NULL,
+        blank=True,
         null=True
     )
     name = models.CharField('Название', max_length=50)
@@ -70,6 +71,7 @@ class Post(models.Model):
     author = models.ForeignKey(
         Author,
         on_delete=models.SET_NULL,
+        blank=True,
         null=True
     )
     name = models.CharField('Название', max_length=50)

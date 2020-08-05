@@ -13,7 +13,6 @@ class Author(models.Model):
     slug = models.SlugField('id', max_length=100000, unique=True)
     bio = models.TextField(max_length=500, blank=True)
 
-
     class Meta:
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профили'
@@ -23,16 +22,7 @@ class Author(models.Model):
         super(Author, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('profile_detail', args=[str(self.slug)])
+        return reverse('author_detail', args=[str(self.slug)])
 
     def __str__(self):
         return self.slug
-
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Author.objects.create(user=instance)
-
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
-        instance.profile.save()

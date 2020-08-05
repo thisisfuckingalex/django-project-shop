@@ -3,7 +3,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
-from . import views
+from blog import views
 
 urlpatterns = [
     path('', views.HomePost.as_view(), name='home_posts'),

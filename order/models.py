@@ -1,11 +1,15 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 from blog.models import Product
+from user.models import Profile
+
 
 class Order(models.Model):
-    username = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     email = models.EmailField()
     address = models.CharField(max_length=250)
     postal_code = models.CharField(max_length=20)
@@ -27,6 +31,15 @@ class Order(models.Model):
 
     def get_absolute_url(self):
         return reverse('order_detail', kwargs={'pk_order': self.pk})
+
+    # @receiver(post_save, sender=User)
+    # def create_user_profile(sender, instance, created, **kwargs):
+    #     if created:
+    #         Order.objects.create()
+    #
+    # @receiver(post_save, sender=User)
+    # def save_user_profile(sender, instance, **kwargs):
+    #     instance.order.save()
 
 
 class OrderItem(models.Model):

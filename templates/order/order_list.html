@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% for orders in orders %}
-        <p><a href="{{ orders.get_absolute_url }}">{{ orders.pk }}</a></p>
+
+    {% for orders in order_list %}
+        {% if user.profile == orders.user %}
+            <p><a href="{{ orders.get_absolute_url }}">{{ orders.pk }}, {{ orders.user }}</a></p>
+        {% endif %}
     {% endfor %}
+
+
 {% endblock %}
