@@ -53,3 +53,6 @@ class OrderItem(models.Model):
 
     def get_cost(self):
         return self.price * self.quantity
+
+    def get_total_cost(self):
+        return sum(item.get_cost() for item in self.order.items.all())

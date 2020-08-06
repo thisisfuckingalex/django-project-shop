@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import FormView, DetailView, CreateView
 from django.views.decorators.http import require_POST
 
 from cart.cart import Cart
