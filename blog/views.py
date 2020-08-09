@@ -17,7 +17,7 @@ class HomePost(ListView):
     template_name = 'index.html'
     context_object_name = 'home_posts'
     queryset = Post.objects.filter(to_display=True)
-    paginate_by = 2
+    paginate_by = 1
 
 
 class PostDetail(View, PostDetailMixin, ):
@@ -33,6 +33,7 @@ class ProductList(ListView):
     model = Product
     template_name = 'product/product_list.html'
     queryset = Product.objects.filter(to_display=True)
+    paginate_by = 1
 
 
 class ProductDetail(View, ProductDetailMixin):
@@ -53,6 +54,7 @@ class CategoryDetail(ListView):
     template_name = 'category/category_detail.html'
     pk_url_kwarg = 'category_pk'
     context_object_name = 'postbycategory'
+    paginate_by = 1
 
     def get_queryset(self):
         return Post.objects.filter(category__id=self.kwargs['category_pk'], to_display=True)
@@ -69,3 +71,5 @@ class TagList(ListView):
 #
 #     def get_queryset(self):
 #         return Post.objects.filter(tag__name__in=self.kwargs['tag__name'], to_display=True)
+
+

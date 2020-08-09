@@ -1,3 +1,11 @@
 from django.shortcuts import render
+from django.views.generic import CreateView
 
-# Create your views here.
+
+from author.models import Author
+
+
+class AuthorCreate(CreateView):
+    model = Author
+    template_name = 'author/author_create.html'
+    fields = ('user', 'bio', )
