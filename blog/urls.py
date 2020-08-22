@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 from blog import views
 
+
 urlpatterns = [
     path('', views.HomePost.as_view(), name='home_posts'),
     path('posts/<pk_post>/', views.PostDetail.as_view(), name='post_detail'),

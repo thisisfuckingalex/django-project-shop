@@ -12,6 +12,7 @@ class Author(models.Model):
     user = models.OneToOneField(Profile, on_delete=models.CASCADE)
     slug = models.SlugField('id', max_length=100000, unique=True)
     bio = models.TextField(max_length=500, blank=True)
+    to_display = models.BooleanField('Принята заявку или нет', default=False)
 
     class Meta:
         verbose_name = 'Автор'

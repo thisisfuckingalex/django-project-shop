@@ -1,7 +1,6 @@
 from django.contrib import admin
 
 from blog.models import Category, Post, Product
-from user.models import Profile
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -23,13 +22,7 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name', )}
 
 
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('slug', 'user_id', 'created_date')
-    prepopulated_fields = {'slug': ('user', )}
-
-
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Product, ProductAdmin)
-admin.site.register(Profile, ProfileAdmin)
 

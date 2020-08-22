@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView
 
 from user.models import Profile

@@ -17,7 +17,7 @@ class HomePost(ListView):
     template_name = 'index.html'
     context_object_name = 'home_posts'
     queryset = Post.objects.filter(to_display=True)
-    paginate_by = 1
+    paginate_by = 3
 
 
 class PostDetail(View, PostDetailMixin, ):
@@ -33,7 +33,7 @@ class ProductList(ListView):
     model = Product
     template_name = 'product/product_list.html'
     queryset = Product.objects.filter(to_display=True)
-    paginate_by = 1
+    paginate_by = 9
 
 
 class ProductDetail(View, ProductDetailMixin):
