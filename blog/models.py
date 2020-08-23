@@ -5,7 +5,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 from pytils.translit import slugify
-from taggit.managers import TaggableManager
 
 from author.models import Author
 
@@ -48,7 +47,6 @@ class Product(models.Model):
     pre_description = models.CharField('Пред показ', max_length=40, null=True, blank=True)
     description = models.TextField('Описание', max_length=500, null=True, blank=True)
     image = models.ImageField('Изображение', upload_to='products', blank=True, null=True)
-    tag = TaggableManager(blank=True)
     created_date = models.DateTimeField('Дата создания', auto_now_add=True)
     update_date = models.DateTimeField('Последние обновление', auto_now=True)
     to_display = models.BooleanField('Показать?', default=False)
@@ -91,7 +89,6 @@ class Post(models.Model):
         null=True,
         blank=True
     )
-    tag = TaggableManager(blank=True)
     created_date = models.DateTimeField('Дата создания', auto_now_add=True)
     update_date = models.DateTimeField('Последние обновление', auto_now=True)
     to_display = models.BooleanField('Показать?', default=False)

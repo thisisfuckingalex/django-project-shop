@@ -16,8 +16,8 @@ class PostAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('author', 'name', 'created_date', 'tag', 'to_display', 'for_auth')
-    list_filter = ('created_date', 'tag')
+    list_display = ('author', 'name', 'created_date', 'to_display', 'for_auth')
+    list_filter = ('created_date', )
     list_editable = ('name', 'to_display', 'for_auth')
     prepopulated_fields = {'slug': ('name', )}
 
